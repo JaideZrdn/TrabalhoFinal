@@ -24,7 +24,7 @@ import ltn
 # CONFIGURAÇÕES
 # ─────────────────────────────────────────────
 N_OBJECTS = 25
-EPOCHS    = 500     # reduzido para rodar 5x mais rápido
+EPOCHS    = 500     # reduzido para rodar 5x mais ráaapido
 LR        = 0.001
 THRESHOLD = 0.5
 N_RUNS    = 5
