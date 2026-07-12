@@ -3,6 +3,11 @@
 **Disciplina:** Fundamentos de Inteligência Artificial (ICC260) — Prof. Edjard Mota
 **Trabalho Final:** Racicínio Espacial Neuro-Simbólico com Logic Tensor Networks (LTN)
 
+**Autores:**
+- Amanda Spellen
+- Lucas Darcio
+- Jaide Zardin
+
 Este README documenta a entrega do trabalho, conforme pedido na Seção 4 do enunciado: uma descrição de NeSy e LTN, do dataset CLEVR simplificado, dos valores de satisfação das fórmulas específicas no conjunto de teste, e dos resultados das 5 execuções (satisfatibilidade, acurácia, precisão, recall e F1). Também inclui um diagrama da arquitetura das redes LTN utilizadas e uma seção sobre as decisões de implementação tomadas ao longo do desenvolvimento.
 
 > Nota sobre a stack: o notebook final (`IA-Trabalho-Final.ipynb`) foi implementado com a biblioteca `ltn` sobre **TensorFlow** (e não `ltntorch`/PyTorch, usada apenas no protótipo exploratório `XAI_In_LTN.ipynb`). Essa mudança de framework está detalhada na seção de decisões de implementação.
