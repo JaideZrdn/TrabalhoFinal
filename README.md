@@ -142,6 +142,55 @@ Para comparação, o baseline de Regressão Logística treinado uma vez na cena 
 **Comentário.** Esses são os números mais relevantes para avaliar se o "raciocínio" generalizou: todos os axiomas relacionais puros (irreflexividade, assimetria, inversa, transitividade) ficam consistentemente acima de ~0.87 nas 5 cenas nunca vistas em treino, com transitividade — o axioma logicamente mais exigente, por envolver três variáveis quantificadas universalmente — chegando a ~0.98–0.99. Isso indica que as regras lógicas não foram apenas "decoradas" na cena de treino, mas de fato restringiram o grounding aprendido para algo consistente em cenas novas. A supervisão positiva é o axioma mais baixo do grupo (~0.76–0.81) em ambas as relações — esperado, já que ela pede satisfação **estrita** (Forall sem margem) de um rótulo geométrico exato em todo par positivo, o critério mais difícil de otimizar simultaneamente com os quatro axiomas puramente lógicos dentro do mesmo `SatAgg`. Vale notar que a supervisão da Tarefa 1 (média 0.886) tem um desvio-padrão bem maior (0.173) do que os demais axiomas do grupo — isso vem quase inteiramente dos sub-axiomas de tamanho (`sup_small_*`/`sup_big_*`), que oscilam entre ~0.48 e ~0.998 conforme a seed, refletindo a mesma instabilidade já observada na acurácia de tamanho na Seção 5.1; os sub-axiomas de forma, em contraste, permanecem estáveis e altos (tipicamente > 0.95) em todas as 5 cenas.
 
 ---
+## Como Executar Localmente
+
+Pré-requisito: **Python 3.14** (conforme `pyproject.toml`).
+
+### Opção A — usando Poetry (recomendado)
+
+O projeto já vem com `pyproject.toml` e `poetry.lock`, garantindo as versões exatas testadas.
+
+1. Instale o [Poetry](https://python-poetry.org/docs/#installation), caso ainda não tenha.
+2. Na raiz do repositório, instale as dependências:
+   ```bash
+   poetry install
+   ```
+3. Instale Jupyter no mesmo ambiente e registre um kernel (o Poetry não gerencia `jupyter`/`ipykernel` neste projeto):
+   ```bash
+   poetry run pip install jupyter ipykernel
+   poetry run python -m ipykernel install --user --name trabalhofinal
+   ```
+4. Abra o notebook:
+   ```bash
+   poetry run jupyter notebook IA_Trabalho_Final_LTNtorch.ipynb
+   ```
+   e selecione o kernel `trabalhofinal`.
+
+### Opção B — usando `pip` + `requirements.txt`
+
+Use esta opção se preferir não instalar o Poetry.
+
+1. Crie e ative um ambiente virtual:
+   ```bash
+   python3.14 -m venv .venv
+   source .venv/bin/activate  # Windows: .venv\Scripts\activate
+   ```
+2. Instale as dependências:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Abra o notebook:
+   ```bash
+   jupyter notebook IA_Trabalho_Final_LTNtorch.ipynb
+   ```
+
+### Executando
+
+Com o notebook aberto no Jupyter, execute as células em ordem (`Run All`). O treinamento roda uma única vez sobre a cena de `TRAIN_SEED = 999`, e a avaliação é repetida automaticamente sobre as 5 seeds de teste (`0, 1, 2, 3, 42`) descritas na Seção 2. Nenhuma GPU é necessária — o notebook roda em CPU, embora rode mais rápido se `torch.cuda.is_available()` for `True`.
+
+> Se preferir apenas ler os resultados sem reexecutar, todas as métricas relatadas nas Seções 5 e 6 já estão fixadas no corpo deste README.
+
+---
 ## Estrutura do Repositório
 
   
@@ -150,6 +199,8 @@ Para comparação, o baseline de Regressão Logística treinado uma vez na cena 
 - `XAI_In_LTN.ipynb` — protótipo exploratório inicial de XAI, também em LTNtorch/PyTorch; não usado para os resultados reportados.
 - `3oTrabalho_IA.pdf` — enunciado do trabalho.
 - `plano_implementacao_LTN_v2.md` — plano de implementação (versão anterior à solução final; algumas decisões evoluíram, ver Seção 4 acima).
+- `pyproject.toml` / `poetry.lock` — dependências gerenciadas via Poetry (uso recomendado, ver "Como Executar Localmente").
+- `requirements.txt` — alternativa via `pip`, para quem não usa Poetry (ver "Como Executar Localmente").
 
 ---
 ## Nota sobre Uso de IA
