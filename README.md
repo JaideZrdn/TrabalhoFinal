@@ -7,6 +7,8 @@
 - Lucas Darcio
 - Jaide Zardin
 
+> **LINK PARA O NOTEBOOK NO GOOGLE COLAB:** https://drive.google.com/file/d/1DMkGzK66CftkzGwgE7DrKW9tcMk9zjvW/view?usp=sharing
+
 Este relatório documenta a entrega do trabalho, conforme pedido na Seção 4 do enunciado: uma descrição de NeSy e LTN, do dataset CLEVR simplificado, dos valores de satisfação das fórmulas específicas no conjunto de teste, e dos resultados das 5 execuções (satisfatibilidade, acurácia, precisão, recall e F1). Também inclui um diagrama da arquitetura das redes LTN utilizadas e uma seção sobre as decisões de implementação tomadas ao longo do desenvolvimento.
 
 ---
